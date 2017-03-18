@@ -1,0 +1,16 @@
+header 
+  =link_to "Главная", root_path
+  =link_to "Добавить точку", root_path
+
+.content
+  / = form_tag points_path  do
+  /   = text_field_tag :name, '', placeholder: "Название"
+  /   = text_field_tag "coordinate[]", '', placeholder: "Широта"
+  /   = text_field_tag "coordinate[]", '', placeholder: "Долгота"
+  /   = submit_tag "Cохранить"
+
+  = form_for @point do |f|
+    = f.text_field :name, placeholder: "Название"
+    = f.text_field :latitude, placeholder: "Широта"
+    = f.text_field :longitude, placeholder: "Долгота"
+    = f.submit "Cохранить"

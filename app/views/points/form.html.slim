@@ -1,0 +1,8 @@
+= render partial: "header"
+
+.content
+  = form_for @point do |f|
+    = f.text_field :name, placeholder: "Название"
+    = f.text_field :latitude, placeholder: "Широта"
+    = f.text_field :longitude, placeholder: "Долгота"
+    = f.submit "Cохранить"

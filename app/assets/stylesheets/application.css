@@ -13,3 +13,53 @@
  *= require_tree .
  *= require_self
  */
+
+#map {
+  height: 400px;
+  width: 100%;
+}
+
+header {
+  font-size: 20px;
+  font-family: Roboto;
+  margin: 10px 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  padding: 30px; 
+}
+
+table.points-list {
+  padding-top: 20px;
+  margin: 0 auto;
+}
+
+table.points-list th{
+  border-bottom: solid 1px red;
+}
+
+table.points-list a{
+  font-size: 12px;
+  font-family: DejaVu Sans;
+  padding: 0;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.content{
+  text-align: center;
+}
+
+form{
+  display: inline-grid;
+}
+
+form input{
+  margin: 10px 0;
+}

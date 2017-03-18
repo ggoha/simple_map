@@ -1,0 +1,46 @@
+- content_for :end_body do
+  script defer=true async=true src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSo3gwebPWkI-3bw08ooDpuWHQWpPWlDM&callback=myInitMap"
+  script defer=true src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"
+
+= render partial: "header"
+.content
+  . id="map"
+  table.points-list
+    thead
+      tr
+        th Название
+        th Долгота
+        th Широта
+        th
+        th
+    tbody
+      - @points.each do |point|
+        tr data-lat="#{point.latitude}" data-lng="#{point.longitude}"
+          td =point.name
+          td =point.longitude
+          td =point.latitude
+          td 
+            button onclick="add(this);" Показать 
+          td =link_to "Редактировать", edit_point_path(point)
+
+javascript:
+  var map;
+  function myInitMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 9,
+      center: {lat: 55.7509922, lng: 37.6178375}
+    });
+
+    var markers = $("tbody tr").map(function( i, location) {
+      return new google.maps.Marker({
+        position: {lat: parseFloat(location.dataset["lat"]), lng:  parseFloat(location.dataset["lng"])}
+      });
+    });
+
+    var markerCluster = new MarkerClusterer(map, markers,
+        {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+  }
+  function add(e){
+    var data = e.parentNode.parentNode.dataset
+    map.setCenter({lat: parseFloat(data["lat"]), lng:  parseFloat(data["lng"])});
+  }
